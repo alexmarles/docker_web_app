@@ -5,9 +5,12 @@
   "author": "Alex Marles <alex@alexmarles.com",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "*"
   }
 }
