@@ -1,5 +1,5 @@
-FROM node:4.4.0
-MAINTAINER alex@alexmarles.com
+FROM node:argon
 
+# Bundle app source
 WORKDIR /app
 COPY app/ .
