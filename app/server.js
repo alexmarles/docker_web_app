@@ -1,13 +1,14 @@
 'use strict';
 
-const express = require('express');
-
-// Constants
-const port = 3000;
+const express    = require('express');
+const bodyParser = require('body-parser');
 
 // App
 const app = express();
+const port = process.env.PORT || 3000;
 app.set('port', port);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!\n')
