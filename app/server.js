@@ -24,8 +24,11 @@ app.use(bodyParser.json());
 
 // INDEX
 app.get('/api/products', (req, res) => {
+  console.log('GET /api/products');
+  console.log(req.body);
+
   Product.find({}, (err, products) => {
-    if (err) return res.status(status.error).send({ message: `Error during petition: ${err}` });
+    if (err) return res.status(status.error).send({ message: `Error while getting products: ${err}` });
     if (!products) return res.status(status.notFound).send({ message: `Products do not exist` });
 
     res.status(status.ok).send({ products });
@@ -34,10 +37,13 @@ app.get('/api/products', (req, res) => {
 
 // SHOW
 app.get('/api/product/:productId', (req, res) => {
+  console.log('GET /api/product');
+  console.log(req.body);
+
   let productId = req.params.productId;
 
   Product.findById(productId, (err, product) => {
-    if (err) return res.status(status.error).send({ message: `Error during petition: ${err}` });
+    if (err) return res.status(status.error).send({ message: `Error while getting product: ${err}` });
     if (!product) return res.status(status.notFound).send({ message: `Product does not exist` });
 
     res.status(status.ok).send({ product });
@@ -57,18 +63,44 @@ app.post('/api/product', (req, res) => {
   product.description = req.body.description;
 
   product.save((err, productStored) => {
-    if (err) return res.status(status.error).send({ message: `Error saving product in database: ${err}` });
+    if (err) return res.status(status.error).send({ message: `Error while saving product in database: ${err}` });
 
-    res.status(status.ok).send({ message: productStored });
+    res.status(status.ok).send({ product: productStored });
   });
 });
 
 // UPDATE
 app.put('/api/product/:productId', (req, res) => {
+  console.log('PUT /api/product');
+  console.log(req.body);
+
+  let productId = req.params.productId;
+
+  Product.findByIdAndUpdate(productId, req.body, (err, productUpdated) => {
+    if (err) return res.status(status.error).send({ message: `Error while updating product: ${err}` });
+    if (!productUpdated) return res.status(status.notFound).send({ message: `Product does not exist` });
+
+    res.status(status.ok).send({ product: productUpdated });
+  });
 });
 
 // DESTROY
 app.delete('/api/product/:productId', (req, res) => {
+  console.log('DELETE /api/product');
+  console.log(req.body);
+
+  let productId = req.params.productId;
+
+  Product.findById(productId, (err, product) => {
+    if (err) return res.status(status.error).send({ message: `Error while deleting product: ${err}` });
+    if (!product) return res.status(status.notFound).send({ message: `Product does not exist` });
+
+    product.remove(err => {
+      if (err) return res.status(status.error).send({ message: `Error while deleting product: ${err}` });
+      
+      res.status(status.ok).send({ message: `Product with id=${productId} was deleted` });
+    });
+  });
 });
 
 app.get('/', (req, res) => {
