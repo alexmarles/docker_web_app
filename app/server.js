@@ -12,10 +12,10 @@ mongoose.connect('mongodb://mongo:27017');
 // App
 const app      = express();
 const port     = process.env.PORT || 3000;
-const STATUS   = {
-  OK: 200,
-  NOT_FOUND: 404,
-  ERROR: 500
+const status   = {
+  ok: 200,
+  notFound: 404,
+  error: 500
 }
 
 app.set('port', port);
@@ -24,11 +24,24 @@ app.use(bodyParser.json());
 
 // INDEX
 app.get('/api/products', (req, res) => {
-  res.status(STATUS.OK).send({ products: [] });
+  Product.find({}, (err, products) => {
+    if (err) return res.status(status.error).send({ message: `Error during petition: ${err}` });
+    if (!products) return res.status(status.notFound).send({ message: `Products do not exist` });
+
+    res.status(status.ok).send({ products });
+  });
 });
 
 // SHOW
 app.get('/api/product/:productId', (req, res) => {
+  let productId = req.params.productId;
+
+  Product.findById(productId, (err, product) => {
+    if (err) return res.status(status.error).send({ message: `Error during petition: ${err}` });
+    if (!product) return res.status(status.notFound).send({ message: `Product does not exist` });
+
+    res.status(status.ok).send({ product });
+  });
 });
 
 // CREATE
@@ -44,9 +57,9 @@ app.post('/api/product', (req, res) => {
   product.description = req.body.description;
 
   product.save((err, productStored) => {
-    if (err) res.status(STATUS.ERROR).send({ message: `Error saving product in database: ${err}` });
+    if (err) return res.status(status.error).send({ message: `Error saving product in database: ${err}` });
 
-    res.status(STATUS.OK).send({ message: productStored });
+    res.status(status.ok).send({ message: productStored });
   });
 });
 
