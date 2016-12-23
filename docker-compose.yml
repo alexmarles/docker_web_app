@@ -1,4 +1,4 @@
-web:
+store_server:
   build: .
   command: sh -c 'npm install; npm start'
   ports:

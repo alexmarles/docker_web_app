@@ -1,7 +1,7 @@
 {
-  "name": "docker_web_app",
+  "name": "store_server",
   "version": "1.0.0",
-  "description": "Node.js on Docker",
+  "description": "Store Server app build in Node.js on Docker",
   "author": "Alex Marles <alex@alexmarles.com",
   "main": "server.js",
   "scripts": {
