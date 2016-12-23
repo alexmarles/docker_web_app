@@ -1,5 +1,5 @@
 FROM node:argon
 
 # Bundle app source
-WORKDIR /app
-COPY app/ .
+WORKDIR /src
+COPY src/ .
