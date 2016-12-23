@@ -1,0 +1,13 @@
+store_server:
+  build: .
+  command: sh -c 'npm install; npm start'
+  ports:
+    - '3000:3000'
+  volumes:
+    - ./app:/app
+  links:
+    - mongo
+mongo:
+  image: mongo
+  ports:
+  - '27017:27017'

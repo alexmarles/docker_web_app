@@ -1,0 +1,20 @@
+{
+  "name": "store_server",
+  "version": "1.0.0",
+  "description": "Store Server app build in Node.js on Docker",
+  "author": "Alex Marles <alex@alexmarles.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "crypto": "0.0.3",
+    "express": "^4.13.3",
+    "mongoose": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  }
+}
