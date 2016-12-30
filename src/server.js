@@ -1,8 +1,8 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const config   = require('./config');
-const app      = require('./app');
+import mongoose from 'mongoose';
+import config from './config';
+import app from './app';
 
 // DB setup
 mongoose.connect(config.db, (err, res) => {

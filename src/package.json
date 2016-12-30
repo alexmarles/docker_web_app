@@ -5,7 +5,7 @@
   "author": "Alex Marles <alex@alexmarles.com",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js --exec babel-node --presets es2015,stage-2"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -16,10 +16,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
     "babel-preset-stage-2": "^6.18.0",
     "nodemon": "*"
   }
