@@ -1,9 +1,7 @@
 'use strict';
 
-// Imports
 import User from '../models/user';
 
-// Controller Methods
 function index (req, res) {
   console.log('GET /api/users');
   console.log(req.body);
@@ -30,7 +28,6 @@ function show (req, res) {
   });
 }
 
-// Export
 export default {
   index,
   show

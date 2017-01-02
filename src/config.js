@@ -1,7 +1,7 @@
-// Keys Import
+// Private Keys and Data
 import keys from './keys';
 
-// App Config Variables
+// App Variables Configuration
 export default {
   port: process.env.PORT || 3000,
   db: process.env.MONGODB || 'mongodb://mongo:27017',

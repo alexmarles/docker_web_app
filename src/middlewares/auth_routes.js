@@ -1,9 +1,7 @@
 'use strict';
 
-// Imports
 import authService from '../services/auth';
 
-// Middleware method
 function authenticate (req, res, next) {
   let token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -17,7 +15,6 @@ function authenticate (req, res, next) {
   });
 }
 
-// Export
 export default {
   authenticate
 }

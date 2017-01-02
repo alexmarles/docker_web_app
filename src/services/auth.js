@@ -1,11 +1,9 @@
 'use strict';
 
-// Imports
 import jwt    from 'jwt-simple';
 import moment from 'moment';
 import config from '../config';
 
-// Service Methods
 function createToken (user) {
   const payload = {
     sub: user._id,
@@ -25,7 +23,6 @@ function decodeToken (token, callback) {
   }
 };
 
-// Export
 export default {
   createToken,
   decodeToken

@@ -1,11 +1,9 @@
 'use strict';
 
-// Imports
 import mongoose     from 'mongoose';
 import User         from '../models/user';
 import authService  from '../services/auth';
 
-// Controller Methods
 function signUp (req, res) {
   const user = new User({
     email: req.body.email,
@@ -32,7 +30,6 @@ function signIn (req, res) {
   });
 }
 
-// Export
 export default {
   signUp,
   signIn

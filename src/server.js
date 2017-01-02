@@ -1,6 +1,5 @@
 'use strict';
 
-// Imports
 import mongoose from 'mongoose';
 import config   from './config';
 import app      from './app';

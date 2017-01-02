@@ -1,9 +1,7 @@
 'use strict';
 
-// Imports
 import Product from '../models/product';
 
-// Controller Methods
 function index (req, res) {
   console.log('GET /api/products');
   console.log(req.body);
@@ -80,7 +78,6 @@ function destroy (req, res) {
   });
 }
 
-// Export
 export default {
   index,
   show,
