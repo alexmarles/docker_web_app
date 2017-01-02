@@ -15,7 +15,6 @@ function createToken (user) {
 };
 
 function decodeToken (token, callback) {
-  console.log('decodeToken');
   try {
     callback(null, jwt.decode(token, config.SECRET_TOKEN));
   } catch (err) {

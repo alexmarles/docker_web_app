@@ -3,9 +3,6 @@
 import User from '../models/user';
 
 function index (req, res) {
-  console.log('GET /api/users');
-  console.log(req.body);
-
   User.find({}, (err, users) => {
     if (err) return res.status(500).send({ message: `Error while getting users: ${err}` });
     if (!users) return res.status(404).send({ message: `Users not found` });
@@ -15,9 +12,6 @@ function index (req, res) {
 }
 
 function show (req, res) {
-  console.log('GET /api/user');
-  console.log(req.body);
-
   let userId = req.params.userId;
 
   User.findById(userId, (err, user) => {

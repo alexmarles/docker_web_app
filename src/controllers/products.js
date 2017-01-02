@@ -3,9 +3,6 @@
 import Product from '../models/product';
 
 function index (req, res) {
-  console.log('GET /api/products');
-  console.log(req.body);
-
   Product.find({}, (err, products) => {
     if (err) return res.status(500).send({ message: `Error while getting products: ${err}` });
     if (!products) return res.status(404).send({ message: `Products do not exist` });
@@ -15,9 +12,6 @@ function index (req, res) {
 }
 
 function show (req, res) {
-  console.log('GET /api/product');
-  console.log(req.body);
-
   let productId = req.params.productId;
 
   Product.findById(productId, (err, product) => {
@@ -29,9 +23,6 @@ function show (req, res) {
 }
 
 function create (req, res) {
-  console.log('POST /api/product');
-  console.log(req.body);
-
   let product         = new Product();
   product.name        = req.body.name;
   product.picture     = req.body.picture;
@@ -47,9 +38,6 @@ function create (req, res) {
 }
 
 function update (req, res) {
-  console.log('PUT /api/product');
-  console.log(req.body);
-
   let productId = req.params.productId;
 
   Product.findByIdAndUpdate(productId, req.body, (err, productUpdated) => {
@@ -61,9 +49,6 @@ function update (req, res) {
 }
 
 function destroy (req, res) {
-  console.log('DELETE /api/product');
-  console.log(req.body);
-
   let productId = req.params.productId;
 
   Product.findById(productId, (err, product) => {

@@ -5,6 +5,7 @@ import config   from './config';
 import app      from './app';
 
 // DB Setup & Init
+mongoose.Promise = global.Promise;
 mongoose.connect(config.db, (err, res) => {
   if (err) return console.log(`Error establishing connection to the database: ${err}`);
   
