@@ -1,5 +1,6 @@
 FROM node:argon
 
 # Bundle app source
-WORKDIR /src
+RUN mkdir -p /srv/www/store_server
+WORKDIR /srv/www/store_server
 COPY src/ .
