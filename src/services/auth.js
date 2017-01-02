@@ -3,7 +3,7 @@
 // Imports
 import jwt    from 'jwt-simple';
 import moment from 'moment';
-import config from './config';
+import config from '../config';
 
 // Service Methods
 function createToken (user) {
@@ -16,5 +16,17 @@ function createToken (user) {
   return jwt.encode(payload, config.SECRET_TOKEN);
 };
 
+function decodeToken (token, callback) {
+  console.log('decodeToken');
+  try {
+    callback(null, jwt.decode(token, config.SECRET_TOKEN));
+  } catch (err) {
+    callback(err);
+  }
+};
+
 // Export
-export default function createToken;
+export default {
+  createToken,
+  decodeToken
+}
