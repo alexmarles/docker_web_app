@@ -19,6 +19,10 @@ api.delete('/product/:productId', ProductCtrl.destroy);
 api.post('/sign_up', AuthCtrl.signUp);
 api.post('/sign_in', AuthCtrl.signIn);
 
+api.get('/', (req, res) => {
+  res.status(200).send({ message: 'Welcome!' });
+});
+
 // Protected Routes with Authentication
 api.use(authRoutes.authenticate);
 
