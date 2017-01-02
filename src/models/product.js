@@ -1,8 +1,12 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+// Imports
+import mongoose from 'mongoose';
 
+// Constants
+const Schema = mongoose.Schema;
+
+// Model
 const ProductSchema = Schema({
   name: String,
   picture: String,
@@ -11,4 +15,5 @@ const ProductSchema = Schema({
   description: String
 });
 
-module.exports = mongoose.model('Product', ProductSchema);
+// Export
+export default mongoose.model('Product', ProductSchema);

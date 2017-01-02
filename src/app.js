@@ -1,15 +1,18 @@
 'use strict';
 
-// App imports
-const express    = require('express');
-const bodyParser = require('body-parser');
-const mongoose   = require('mongoose');
-const app        = express();
-const api        = require('./routes/api');
+// Imports
+import express    from 'express';
+import bodyParser from 'body-parser';
+import mongoose   from 'mongoose';
+import api        from './routes/api';
 
-// App config
+// Constants
+const app = express();
+
+// App Config
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api', api);
 
-module.exports = app;
+// Export
+export default app;

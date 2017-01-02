@@ -1,7 +1,9 @@
 'use strict';
 
-const User = require('../models/user');
+// Imports
+import User from '../models/user';
 
+// Controller Methods
 function index (req, res) {
   console.log('GET /api/users');
   console.log(req.body);
@@ -28,7 +30,8 @@ function show (req, res) {
   });
 }
 
-module.exports = {
+// Export
+export default {
   index,
   show
 };

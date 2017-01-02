@@ -1,10 +1,11 @@
 'use strict';
 
+// Imports
 import mongoose from 'mongoose';
-import config from './config';
-import app from './app';
+import config   from './config';
+import app      from './app';
 
-// DB setup
+// DB Setup & Init
 mongoose.connect(config.db, (err, res) => {
   if (err) return console.log(`Error establishing connection to the database: ${err}`);
   

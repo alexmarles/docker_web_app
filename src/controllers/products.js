@@ -1,7 +1,9 @@
 'use strict';
 
-const Product = require('../models/product');
+// Imports
+import Product from '../models/product';
 
+// Controller Methods
 function index (req, res) {
   console.log('GET /api/products');
   console.log(req.body);
@@ -78,7 +80,8 @@ function destroy (req, res) {
   });
 }
 
-module.exports = {
+// Export
+export default {
   index,
   show,
   create,

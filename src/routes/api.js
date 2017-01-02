@@ -1,9 +1,12 @@
 'use strict';
 
-const express = require('express');
-const api = express.Router();
+// Imports
+import express      from 'express';
+import ProductCtrl  from '../controllers/products';
+import UserCtrl     from '../controllers/users';
 
-const ProductCtrl = require('../controllers/products');
+// Constants
+const api = express.Router();
 
 // Product Resources
 api.get('/products', ProductCtrl.index);
@@ -12,4 +15,9 @@ api.post('/product', ProductCtrl.create);
 api.put('/product/:productId', ProductCtrl.update);
 api.delete('/product/:productId', ProductCtrl.destroy);
 
-module.exports = api;
+// User Resources
+api.get('/users', UserCtrl.index);
+api.get('/user/:userId', UserCtrl.show);
+
+// Export
+export default api;
