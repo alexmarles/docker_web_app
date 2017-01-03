@@ -19,12 +19,13 @@ api.delete('/product/:productId', ProductCtrl.destroy);
 api.post('/sign_up', AuthCtrl.signUp);
 api.post('/sign_in', AuthCtrl.signIn);
 
-api.get('/', (req, res) => {
-  res.status(200).send({ message: 'Welcome!' });
-});
-
 // User Resources (Protected With Authentication)
 api.get('/users', auth.isAuth, UserCtrl.index);
 api.get('/user/:userId', auth.isAuth, UserCtrl.show);
+
+// General Routes
+api.get('/', (req, res) => {
+  res.status(200).send({ message: 'Welcome!' });
+});
 
 export default api;
