@@ -10,10 +10,10 @@ const api = express.Router();
 
 // Product Resources
 api.get('/products', ProductCtrl.index);
-api.get('/product/:productId', ProductCtrl.show);
-api.post('/product', ProductCtrl.create);
-api.put('/product/:productId', ProductCtrl.update);
-api.delete('/product/:productId', ProductCtrl.destroy);
+api.get('/products/:productId', ProductCtrl.show);
+api.post('/products', ProductCtrl.create);
+api.put('/products/:productId', ProductCtrl.update);
+api.delete('/products/:productId', ProductCtrl.destroy);
 
 // Auth Resources
 api.post('/sign_up', AuthCtrl.signUp);
@@ -21,7 +21,7 @@ api.post('/sign_in', AuthCtrl.signIn);
 
 // User Resources (Protected With Authentication)
 api.get('/users', auth.isAuth, UserCtrl.index);
-api.get('/user/:userId', auth.isAuth, UserCtrl.show);
+api.get('/users/:userId', auth.isAuth, UserCtrl.show);
 
 // General Routes
 api.get('/', (req, res) => {
