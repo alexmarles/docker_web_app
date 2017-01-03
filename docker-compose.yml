@@ -1,8 +1,10 @@
 store_server:
   build: .
   command: sh -c 'npm install; npm start'
+  environment:
+    - PORT=$DOCKER_PORT
   ports:
-    - '3000:3000'
+    - '$DOCKER_PORT:$DOCKER_PORT'
   volumes:
     - ./src:/srv/www/store_server
   links:
