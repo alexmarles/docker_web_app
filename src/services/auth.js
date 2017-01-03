@@ -16,9 +16,21 @@ function createToken (user) {
 
 function decodeToken (token, callback) {
   try {
-    callback(null, jwt.decode(token, config.SECRET_TOKEN));
+    let decoded = {
+      code: 200
+    };
+    decoded.payload = jwt.decode(token, config.SECRET_TOKEN);
+
+    callback(null, decoded);
   } catch (err) {
-    callback(err);
+    if (err.message !== 'Token expired') callback(err);
+    else {
+      let decoded = {
+        code: 401,
+        message: 'Token has expired.'
+      };
+      callback(null, decoded);
+    }
   }
 };
 

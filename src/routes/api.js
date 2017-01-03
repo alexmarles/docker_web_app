@@ -1,10 +1,10 @@
 'use strict';
 
 import express      from 'express';
-import authRoutes   from '../middlewares/auth_routes';
+import auth         from '../middlewares/auth';
 import ProductCtrl  from '../controllers/products';
-import UserCtrl     from '../controllers/users';
 import AuthCtrl     from '../controllers/auth';
+import UserCtrl     from '../controllers/users';
 
 const api = express.Router();
 
@@ -23,11 +23,8 @@ api.get('/', (req, res) => {
   res.status(200).send({ message: 'Welcome!' });
 });
 
-// Protected Routes with Authentication
-api.use(authRoutes.authenticate);
-
-// User Resources
-api.get('/users', UserCtrl.index);
-api.get('/user/:userId', UserCtrl.show);
+// User Resources (Protected With Authentication)
+api.get('/users', auth.isAuth, UserCtrl.index);
+api.get('/user/:userId', auth.isAuth, UserCtrl.show);
 
 export default api;
