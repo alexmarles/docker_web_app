@@ -7,6 +7,9 @@ function index (req, res) {
     if (err) return res.status(500).send({ message: `Error while getting users: ${err}` });
     if (!users) return res.status(404).send({ message: `Users not found` });
 
+    users.map((user) => {
+      user.avatar = user.gravatar();
+    });
     res.status(200).send({ users });
   });
 }
@@ -18,6 +21,7 @@ function show (req, res) {
     if (err) return res.status(500).send({ message: `Error while getting user: ${err}` });
     if (!user) return res.status(404).send({ message: `User not found` });
 
+    user.avatar = user.gravatar();
     res.status(200).send({ user });
   });
 }
