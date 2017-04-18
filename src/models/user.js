@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
-import mongoose from 'mongoose';
-import bcrypt   from 'bcrypt-nodejs';
-import crypto   from 'crypto';
+import mongoose from 'mongoose'
+import bcrypt   from 'bcrypt-nodejs'
+import crypto   from 'crypto'
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const UserSchema = Schema({
   email: { type: String, unique: true, lowercase: true },
@@ -13,29 +13,29 @@ const UserSchema = Schema({
   password: { type: String, select: false },
   createdAt: { type: Date, default: Date.now() },
   lastLoginAt: Date
-});
+})
 
 UserSchema.pre('save', function (next) {
-  let user = this;
-  if (!user.isModified('password')) return next();
+  let user = this
+  if (!user.isModified('password')) return next()
 
   bcrypt.genSalt(10, (err, salt) => {
-    if (err) return next(err);
+    if (err) return next(err)
 
     bcrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) return next(err);
+      if (err) return next(err)
 
-      user.password = hash;
-      next();
-    });
-  });
-});
+      user.password = hash
+      next()
+    })
+  })
+})
 
 UserSchema.methods.gravatar = function () {
-  if (!this.email) return `https://gravatar.com/avatar/?s=200&d=retro`;
+  if (!this.email) return `https://gravatar.com/avatar/?s=200&d=retro`
 
-  const md5 = crypto.createHash('md5').update(this.email).digest('hex');
-  return `https://gravatar.com/avatar/${md5}?s=200&d=retro`;
-};
+  const md5 = crypto.createHash('md5').update(this.email).digest('hex')
+  return `https://gravatar.com/avatar/${md5}?s=200&d=retro`
+}
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema)
