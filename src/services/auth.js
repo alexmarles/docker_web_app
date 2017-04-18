@@ -14,24 +14,22 @@ function createToken (user) {
   return jwt.encode(payload, config.SECRET_TOKEN);
 };
 
-function decodeToken (token, callback) {
-  try {
-    let decoded = {
-      code: 200
-    };
-    decoded.payload = jwt.decode(token, config.SECRET_TOKEN);
+function decodeToken (token) {
+  const decoded = new Promise((resolve, reject) => {
+    try {
+      const payload = jwt.decode(token, config.SECRET_TOKEN)
 
-    callback(null, decoded);
-  } catch (err) {
-    if (err.message !== 'Token expired') callback(err);
-    else {
-      let decoded = {
-        code: 401,
-        message: 'Token has expired.'
-      };
-      callback(null, decoded);
+      resolve(payload.sub);
+    } catch (err) {
+      const status = err.message === 'Token expired' ? 401 : 500
+      reject({
+        status: status,
+        message: err.message
+      });
     }
-  }
+  });
+
+  return decoded;
 };
 
 export default {

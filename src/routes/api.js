@@ -1,7 +1,7 @@
 'use strict';
 
 import express      from 'express';
-import auth         from '../middlewares/auth';
+import isAuth       from '../middlewares/auth';
 import ProductCtrl  from '../controllers/products';
 import AuthCtrl     from '../controllers/auth';
 import UserCtrl     from '../controllers/users';
@@ -20,8 +20,8 @@ api.post('/sign_up', AuthCtrl.signUp);
 api.post('/sign_in', AuthCtrl.signIn);
 
 // User Resources (Protected With Authentication)
-api.get('/users', auth.isAuth, UserCtrl.index);
-api.get('/users/:userId', auth.isAuth, UserCtrl.show);
+api.get('/users', isAuth, UserCtrl.index);
+api.get('/users/:userId', isAuth, UserCtrl.show);
 
 // General Routes
 api.get('/', (req, res) => {
