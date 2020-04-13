@@ -14,7 +14,7 @@
     "express": "^4.13.3",
     "jwt-simple": "^0.5.1",
     "moment": "^2.17.1",
-    "mongoose": "^4.7.2",
+    "mongoose": ">=5.7.5",
     "morgan": "^1.7.0"
   },
   "devDependencies": {
